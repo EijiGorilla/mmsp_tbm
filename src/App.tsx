@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import { useRef, useEffect, useState } from 'react';
 import Select from 'react-select';
-import { map, view, basemaps, layerList } from './Scene';
+import { map, view, basemaps, layerList, measurement } from './Scene';
 import './index.css';
 import './App.css';
 import '@esri/calcite-components/dist/components/calcite-shell';
@@ -21,15 +21,17 @@ import {
   CalcitePanel,
   CalciteList,
   CalciteListItem,
+  CalciteButton,
+  CalciteLabel,
 } from '@esri/calcite-components-react';
 import Chart from './components/Chart';
-import { DropDownData } from './customClass';
-import { tbmTunnelLayer2 } from './layers';
 import ProgressChart from './components/ProgressChart';
+import { dropdownData } from './Query';
 
 function App() {
   const mapDiv = useRef(null);
   const layerListDiv = useRef<HTMLDivElement | undefined | any>(null);
+  const measurementToolDiv = useRef<HTMLDivElement | undefined | any>(null);
 
   // For Calcite Design
   const calcitePanelBasemaps = useRef<HTMLDivElement | undefined | any>(null);
@@ -46,6 +48,11 @@ function App() {
   // Calcite switch for see-through-ground
   const [underground, setUnderground] = useState<boolean>(false);
 
+  // Measurement tools
+  const [activeAnalysis, setActiveAnalysis] = useState<any | undefined>('');
+  const [activeWidgetTool, setActiveWidgetTool] = useState<any | undefined>('');
+  const [nextWidgetTool, setNextWidgetTool] = useState<any | undefined>('');
+
   // Default values for dropdown
   const defaultValue = {
     field1: 'CP101',
@@ -60,13 +67,13 @@ function App() {
         name: 'SG2-NB',
       },
       {
-        name: 'SG2-NB',
+        name: 'SG2-SB',
       },
       {
         name: 'SG3-NB',
       },
       {
-        name: 'SG3-NB',
+        name: 'SG3-SB',
       },
     ],
   };
@@ -74,15 +81,6 @@ function App() {
   useEffect(() => {
     setConstractPackage(defaultValue);
     setTunnelLineList(defaultValue.field2);
-
-    const dropdownData = new DropDownData({
-      featureLayers: [tbmTunnelLayer2],
-      fieldNames: ['Package', 'line'],
-    });
-
-    dropdownData.dropDownQuery().then((response: any) => {
-      setInitContractPackageLine(response);
-    });
   }, []);
 
   // handle change event of the Municipality dropdown
@@ -107,11 +105,23 @@ function App() {
 
     if (nextWidget !== activeWidget) {
       const actionNextWidget = document.querySelector(
-        `[data-panel-id=${nextWidget}]`,
+        `[id=${nextWidget}]`,
       ) as HTMLCalcitePanelElement;
       actionNextWidget.hidden = false;
     }
   });
+
+  // Measurement Tool
+  useEffect(() => {
+    if (activeAnalysis === 'directLineMeasurementAnalysisButton') {
+      measurement.activeTool = 'direct-line';
+    } else if (activeAnalysis === 'areaMeasurementAnalysisButton') {
+      measurement.activeTool = 'area';
+    } else if (activeAnalysis === 'clearButton') {
+      measurement.clear();
+    }
+    view.ui.add(measurement, 'top-right');
+  }, [activeAnalysis]);
 
   useEffect(() => {
     map.ground.opacity = underground === true ? 0.7 : 1;
@@ -129,6 +139,7 @@ function App() {
       view.ui.empty('top-left');
       basemaps.container = calcitePanelBasemaps.current;
       layerList.container = layerListDiv.current;
+      measurement.container = measurementToolDiv.current;
     }
   }, []);
 
@@ -190,7 +201,7 @@ function App() {
               <Select
                 placeholder="Select CP"
                 value={contractPackage}
-                options={initContractPackageLine}
+                options={dropdownData}
                 onChange={handleContractPackageChange}
                 getOptionLabel={(x: any) => x.field1}
                 styles={customstyles}
@@ -371,6 +382,41 @@ function App() {
         ) : (
           ''
         )}
+
+        {/* Measurement Tools */}
+        <div
+          id="measurementToolMenu"
+          className="esri-widget"
+          style={{
+            padding: '0.5em',
+            maxWidth: '110px',
+            width: '200px',
+            height: '50px',
+            position: 'fixed',
+            zIndex: 99,
+          }}
+        >
+          <CalciteButton
+            id="directLineMeasurementAnalysisButton"
+            icon-start="measure-line"
+            title="Interact with direct line measurement"
+            onClick={(event: any) => setActiveAnalysis(event.currentTarget.id)}
+          ></CalciteButton>
+          <CalciteButton
+            id="areaMeasurementAnalysisButton"
+            icon-start="measure-area"
+            title="Interact with area measurement"
+            onClick={(event: any) => setActiveAnalysis(event.currentTarget.id)}
+          ></CalciteButton>
+          <CalciteButton
+            id="clearButton"
+            icon-start="trash"
+            title="Clear measurement"
+            onClick={(event: any) => setActiveAnalysis(event.currentTarget.id)}
+          ></CalciteButton>
+
+          <CalciteLabel></CalciteLabel>
+        </div>
       </CalciteShell>
     </>
   );

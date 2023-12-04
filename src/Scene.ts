@@ -4,6 +4,7 @@ import BasemapGallery from '@arcgis/core/widgets/BasemapGallery';
 import LayerList from '@arcgis/core/widgets/LayerList';
 import GroupLayer from '@arcgis/core/layers/GroupLayer';
 import Compass from '@arcgis/core/widgets/Compass';
+import Measurement from '@arcgis/core/widgets/Measurement';
 
 import {
   constructionBoundaryLayer,
@@ -103,5 +104,12 @@ export const layerList = new LayerList({
 // Compass
 var compass = new Compass({
   view: view,
+});
+
+// Measurement Tool
+export const measurement = new Measurement({
+  view: view,
+  activeTool: undefined,
+  container: undefined,
 });
 view.ui.add(compass, 'top-right');

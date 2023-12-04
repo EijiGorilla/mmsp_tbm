@@ -602,17 +602,6 @@ export const tbmTunnelLayer = new FeatureLayer({
   },
 });
 
-// for dropdown list
-export const tbmTunnelLayer2 = new FeatureLayer({
-  portalItem: {
-    id: '6992715c99d04df28fb93ca9ee9d2b5f',
-    portal: {
-      url: 'https://gis.railway-sector.com/portal',
-    },
-  },
-  layerId: 1,
-});
-
 export const cutterHeadSpotLayer = new GraphicsLayer({
   title: 'Cutter Head Position',
 });

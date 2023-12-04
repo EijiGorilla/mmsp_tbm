@@ -229,3 +229,114 @@ export function zoomToLayer(layer: any) {
       });
   });
 }
+
+export const dropdownData = [
+  {
+    field1: 'CP101',
+    field2: [
+      {
+        name: 'SG1-NB',
+      },
+      {
+        name: 'SG1-SB',
+      },
+      {
+        name: 'SG2-NB',
+      },
+      {
+        name: 'SG2-SB',
+      },
+      {
+        name: 'SG3-NB',
+      },
+      {
+        name: 'SG3-SB',
+      },
+    ],
+  },
+  {
+    field1: 'CP102',
+    field2: [
+      {
+        name: 'SG4-NB',
+      },
+      {
+        name: 'SG4-SB',
+      },
+      {
+        name: 'SG5-NB',
+      },
+      {
+        name: 'SG5-SB',
+      },
+    ],
+  },
+  {
+    field1: 'CP103',
+    field2: [
+      {
+        name: 'SG6-NB',
+      },
+      {
+        name: 'SG6-SB',
+      },
+      {
+        name: 'SG7-NB',
+      },
+      {
+        name: 'SG7-SB',
+      },
+      {
+        name: 'SG8-NB',
+      },
+      {
+        name: 'SG8-SB',
+      },
+    ],
+  },
+  {
+    field1: 'CP104',
+    field2: [
+      {
+        name: 'SG9-NB',
+      },
+      {
+        name: 'SG9-SB',
+      },
+      {
+        name: 'SG10-NB',
+      },
+      {
+        name: 'SG10-SB',
+      },
+    ],
+  },
+  {
+    field1: 'CP105',
+    field2: [
+      {
+        name: 'SG11-NB',
+      },
+      {
+        name: 'SG11-SB',
+      },
+    ],
+  },
+  {
+    field1: 'CP108',
+    field2: [
+      {
+        name: 'SG12-NB',
+      },
+      {
+        name: 'SG12-SB',
+      },
+      {
+        name: 'SG13-NB',
+      },
+      {
+        name: 'SG13-SB',
+      },
+    ],
+  },
+];
