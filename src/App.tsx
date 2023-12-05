@@ -22,7 +22,6 @@ import {
   CalciteList,
   CalciteListItem,
   CalciteButton,
-  CalciteLabel,
 } from '@esri/calcite-components-react';
 import Chart from './components/Chart';
 import ProgressChart from './components/ProgressChart';
@@ -39,8 +38,6 @@ function App() {
   const [nextWidget, setNextWidget] = useState<undefined | any | unknown>(null);
 
   // For dropdown filter
-  const [initContractPackageLine, setInitContractPackageLine] = useState<null | undefined | any>();
-
   const [contractPackage, setConstractPackage] = useState<null | any>(null);
   const [tunnelLine, setTunnelLine] = useState<null | any>(null);
   const [tunnelLineList, setTunnelLineList] = useState<null | undefined | any>([]);
@@ -50,8 +47,6 @@ function App() {
 
   // Measurement tools
   const [activeAnalysis, setActiveAnalysis] = useState<any | undefined>('');
-  const [activeWidgetTool, setActiveWidgetTool] = useState<any | undefined>('');
-  const [nextWidgetTool, setNextWidgetTool] = useState<any | undefined>('');
 
   // Default values for dropdown
   const defaultValue = {
@@ -105,7 +100,7 @@ function App() {
 
     if (nextWidget !== activeWidget) {
       const actionNextWidget = document.querySelector(
-        `[id=${nextWidget}]`,
+        `[data-panel-id=${nextWidget}]`,
       ) as HTMLCalcitePanelElement;
       actionNextWidget.hidden = false;
     }
@@ -139,7 +134,11 @@ function App() {
       view.ui.empty('top-left');
       basemaps.container = calcitePanelBasemaps.current;
       layerList.container = layerListDiv.current;
+
+      // Measurement tool
       measurement.container = measurementToolDiv.current;
+      const measureButton = document.getElementById('measurementToolMenu') as HTMLElement;
+      view.ui.add(measureButton, 'top-right');
     }
   }, []);
 
@@ -312,12 +311,7 @@ function App() {
             hidden
           >
             <CalciteList>
-              <CalciteListItem
-                label=""
-                description=""
-                value="basemaps"
-                ref={calcitePanelBasemaps}
-              ></CalciteListItem>
+              <CalciteListItem value="basemaps" ref={calcitePanelBasemaps}></CalciteListItem>
             </CalciteList>
           </CalcitePanel>
 
@@ -373,16 +367,6 @@ function App() {
 
         <div className="mapDiv" ref={mapDiv}></div>
 
-        {/* Monthly progress */}
-        {nextWidget === 'charts' && nextWidget !== activeWidget ? (
-          <ProgressChart
-            contractP={contractPackage === null ? defaultValue.field1 : contractPackage.field1}
-            tunnelL={tunnelLine === null ? '' : tunnelLine.name}
-          />
-        ) : (
-          ''
-        )}
-
         {/* Measurement Tools */}
         <div
           id="measurementToolMenu"
@@ -391,9 +375,7 @@ function App() {
             padding: '0.5em',
             maxWidth: '110px',
             width: '200px',
-            height: '50px',
-            position: 'fixed',
-            zIndex: 99,
+            height: '45px',
           }}
         >
           <CalciteButton
@@ -414,9 +396,17 @@ function App() {
             title="Clear measurement"
             onClick={(event: any) => setActiveAnalysis(event.currentTarget.id)}
           ></CalciteButton>
-
-          <CalciteLabel></CalciteLabel>
         </div>
+
+        {/* Monthly progress */}
+        {nextWidget === 'charts' && nextWidget !== activeWidget ? (
+          <ProgressChart
+            contractP={contractPackage === null ? defaultValue.field1 : contractPackage.field1}
+            tunnelL={tunnelLine === null ? '' : tunnelLine.name}
+          />
+        ) : (
+          ''
+        )}
       </CalciteShell>
     </>
   );
