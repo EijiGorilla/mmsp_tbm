@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import { useRef, useEffect, useState } from 'react';
 import Select from 'react-select';
-import { map, view, basemaps, layerList, measurement } from './Scene';
+import { map, view, basemaps, layerList, measurement, compass } from './Scene';
 import './index.css';
 import './App.css';
 import '@esri/calcite-components/dist/components/calcite-shell';
@@ -115,7 +115,6 @@ function App() {
     } else if (activeAnalysis === 'clearButton') {
       measurement.clear();
     }
-    view.ui.add(measurement, 'top-right');
   }, [activeAnalysis]);
 
   useEffect(() => {
@@ -139,6 +138,8 @@ function App() {
       measurement.container = measurementToolDiv.current;
       const measureButton = document.getElementById('measurementToolMenu') as HTMLElement;
       view.ui.add(measureButton, 'top-right');
+
+      view.ui.add(compass, 'top-right');
     }
   }, []);
 

@@ -102,7 +102,7 @@ export const layerList = new LayerList({
 });
 
 // Compass
-var compass = new Compass({
+export const compass = new Compass({
   view: view,
 });
 
@@ -112,4 +112,3 @@ export const measurement = new Measurement({
   activeTool: undefined,
   container: undefined,
 });
-view.ui.add(compass, 'top-right');
