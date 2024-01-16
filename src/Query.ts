@@ -1,9 +1,43 @@
-import { cutterHeadSpotLayer, tbmTunnelLayer } from './layers';
+import { cutterHeadSpotLayer, dateTable, tbmTunnelLayer } from './layers';
 import StatisticDefinition from '@arcgis/core/rest/support/StatisticDefinition';
 import { view } from './Scene';
 import SpatialReference from '@arcgis/core/geometry/SpatialReference';
 import { IconSymbol3DLayer, PointSymbol3D } from '@arcgis/core/symbols';
 import Graphic from '@arcgis/core/Graphic';
+
+// Updat date
+export async function dateUpdate() {
+  const monthList = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  const query = dateTable.createQuery();
+  query.where = "category = 'TBM Tunnel'";
+
+  return dateTable.queryFeatures(query).then((response: any) => {
+    const stats = response.features;
+    const dates = stats.map((result: any) => {
+      const date = new Date(result.attributes.date);
+      const year = date.getFullYear();
+      const month = monthList[date.getMonth()];
+      const day = date.getDate();
+      const final = year < 1990 ? '' : `${month} ${day}, ${year}`;
+      return final;
+    });
+    return dates;
+  });
+}
 
 export async function generateTbmTunnelData({ contractP, tunnelL }: any) {
   var total_segment_number = new StatisticDefinition({

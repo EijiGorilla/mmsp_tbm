@@ -25,9 +25,11 @@ import {
 } from '@esri/calcite-components-react';
 import Chart from './components/Chart';
 import ProgressChart from './components/ProgressChart';
-import { dropdownData } from './Query';
+import { dateUpdate, dropdownData } from './Query';
 
 function App() {
+  const [asOfDate, setAsOfDate] = useState<undefined | any | unknown>(null);
+
   const mapDiv = useRef(null);
   const layerListDiv = useRef<HTMLDivElement | undefined | any>(null);
   const measurementToolDiv = useRef<HTMLDivElement | undefined | any>(null);
@@ -123,6 +125,10 @@ function App() {
   }, [underground]);
 
   useEffect(() => {
+    dateUpdate().then((response: any) => {
+      setAsOfDate(response);
+    });
+
     if (mapDiv.current) {
       map.ground.navigationConstraint = {
         type: 'none',
@@ -187,7 +193,7 @@ function App() {
             style={{ marginBottom: 'auto', marginTop: 'auto' }}
           />
           <b className="headerTitle">MMSP TBM TUNNEL</b>
-          <div className="date">As of January 15, 2024</div>
+          <div className="date">{!asOfDate ? '' : 'As of ' + asOfDate}</div>
 
           <div className="dropdownFilter">
             <div className="dropdownFilterLayout">

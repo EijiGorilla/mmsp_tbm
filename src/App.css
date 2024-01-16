@@ -115,7 +115,7 @@ calcite-switch {
 }
 
 .date {
-  color: gray;
+  color: rgb(220, 220, 220);
   font-size: 0.8rem;
   width: 150px;
   height: 20px;
