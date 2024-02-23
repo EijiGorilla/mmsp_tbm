@@ -15,7 +15,7 @@ import GraphicsLayer from '@arcgis/core/layers/GraphicsLayer';
 /* Standalone table for Dates */
 export const dateTable = new FeatureLayer({
   portalItem: {
-    id: '8a7097f019e14e488e31235519a963fd',
+    id: 'a084d9cae5234d93b7aa50f7eb782aec',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
@@ -45,7 +45,7 @@ const ConstructionBoundaryFill = new UniqueValueRenderer({
 
 export const constructionBoundaryLayer = new FeatureLayer({
   portalItem: {
-    id: 'c34277793d164f248abb0926963ae92d',
+    id: '0c172b82ddab44f2bb439542dd75e8ae',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
@@ -62,97 +62,97 @@ export const constructionBoundaryLayer = new FeatureLayer({
 });
 
 // * Station Box * //
-// let stationBoxRenderer = new UniqueValueRenderer({
-//   field: 'Layer',
-//   uniqueValueInfos: [
-//     {
-//       value: 'U-Shape Retaining Wall',
-//       symbol: new SimpleFillSymbol({
-//         color: [104, 104, 104],
-//         style: 'backward-diagonal',
-//         outline: {
-//           width: 1,
-//           color: 'black',
-//         },
-//       }),
-//     },
-//     {
-//       value: 'Cut & Cover Box',
-//       symbol: new SimpleFillSymbol({
-//         color: [104, 104, 104],
-//         style: 'backward-diagonal',
-//         outline: {
-//           width: 1,
-//           color: 'black',
-//         },
-//       }),
-//     },
-//     {
-//       value: 'TBM Shaft',
-//       symbol: new SimpleFillSymbol({
-//         color: [104, 104, 104],
-//         style: 'backward-diagonal',
-//         outline: {
-//           width: 1,
-//           color: 'black',
-//         },
-//       }),
-//     },
-//     {
-//       value: 'TBM',
-//       symbol: new SimpleFillSymbol({
-//         color: [178, 178, 178],
-//         style: 'backward-diagonal',
-//         outline: {
-//           width: 0.5,
-//           color: 'black',
-//         },
-//       }),
-//     },
-//     {
-//       value: 'Station Platform',
-//       symbol: new SimpleFillSymbol({
-//         color: [240, 204, 230],
-//         style: 'backward-diagonal',
-//         outline: {
-//           width: 0.4,
-//           color: 'black',
-//         },
-//       }),
-//     },
-//     {
-//       value: 'Station Box',
-//       symbol: new SimpleFillSymbol({
-//         color: [0, 0, 0, 0],
-//         outline: {
-//           width: 2,
-//           color: 'red',
-//         },
-//       }),
-//     },
-//     {
-//       value: 'NATM',
-//       symbol: new SimpleFillSymbol({
-//         color: [178, 178, 178, 0],
-//         style: 'backward-diagonal',
-//         outline: {
-//           width: 0.5,
-//           color: 'grey',
-//         },
-//       }),
-//     },
-//   ],
-// });
+let stationBoxRenderer = new UniqueValueRenderer({
+  field: 'Layer',
+  uniqueValueInfos: [
+    {
+      value: 'U-Shape Retaining Wall',
+      symbol: new SimpleFillSymbol({
+        color: [104, 104, 104],
+        style: 'backward-diagonal',
+        outline: {
+          width: 1,
+          color: 'black',
+        },
+      }),
+    },
+    {
+      value: 'Cut & Cover Box',
+      symbol: new SimpleFillSymbol({
+        color: [104, 104, 104],
+        style: 'backward-diagonal',
+        outline: {
+          width: 1,
+          color: 'black',
+        },
+      }),
+    },
+    {
+      value: 'TBM Shaft',
+      symbol: new SimpleFillSymbol({
+        color: [104, 104, 104],
+        style: 'backward-diagonal',
+        outline: {
+          width: 1,
+          color: 'black',
+        },
+      }),
+    },
+    {
+      value: 'TBM',
+      symbol: new SimpleFillSymbol({
+        color: [178, 178, 178],
+        style: 'backward-diagonal',
+        outline: {
+          width: 0.5,
+          color: 'black',
+        },
+      }),
+    },
+    {
+      value: 'Station Platform',
+      symbol: new SimpleFillSymbol({
+        color: [240, 204, 230],
+        style: 'backward-diagonal',
+        outline: {
+          width: 0.4,
+          color: 'black',
+        },
+      }),
+    },
+    {
+      value: 'Station Box',
+      symbol: new SimpleFillSymbol({
+        color: [0, 0, 0, 0],
+        outline: {
+          width: 2,
+          color: 'red',
+        },
+      }),
+    },
+    {
+      value: 'NATM',
+      symbol: new SimpleFillSymbol({
+        color: [178, 178, 178, 0],
+        style: 'backward-diagonal',
+        outline: {
+          width: 0.5,
+          color: 'grey',
+        },
+      }),
+    },
+  ],
+});
 
 export const stationBoxLayer = new FeatureLayer({
   portalItem: {
-    id: 'c34277793d164f248abb0926963ae92d',
+    id: '52d4f29105934e3f95f6b39c7e5fba6e',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
   },
-  layerId: 8,
-  // renderer: stationBoxRenderer,
+  layerId: 2,
+  renderer: stationBoxRenderer,
   minScale: 150000,
   maxScale: 0,
   title: 'Station Box',
@@ -206,7 +206,7 @@ var labelClass = new LabelClass({
 
 export const stationLayer = new FeatureLayer({
   portalItem: {
-    id: 'c34277793d164f248abb0926963ae92d',
+    id: '52d4f29105934e3f95f6b39c7e5fba6e',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
@@ -306,12 +306,12 @@ const lotLabel = new LabelClass({
 
 export const lotLayer = new FeatureLayer({
   portalItem: {
-    id: '7e20edfba96e4854acd716cbadf5f57f',
+    id: '0c172b82ddab44f2bb439542dd75e8ae',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
   },
-  layerId: 1,
+  layerId: 8,
   outFields: ['*'],
   title: 'Land Acquisition',
 
@@ -372,12 +372,12 @@ const lotLayerBoundaryLabel = new LabelClass({
 
 export const lotLayerBoundary = new FeatureLayer({
   portalItem: {
-    id: '7e20edfba96e4854acd716cbadf5f57f',
+    id: '0c172b82ddab44f2bb439542dd75e8ae',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
   },
-  layerId: 1,
+  layerId: 8,
   outFields: ['*'],
   title: 'Lot Boundary',
   renderer: lotLayerBoundaryRenderer,
@@ -591,12 +591,11 @@ export const tbmStatusRenderer = new UniqueValueRenderer({
 
 export const tbmTunnelLayer = new FeatureLayer({
   portalItem: {
-    id: '6992715c99d04df28fb93ca9ee9d2b5f',
+    id: '518e9321de7745f68b34e48d54cce5fb',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
   },
-  layerId: 1,
   elevationInfo: {
     mode: 'absolute-height',
     offset: -2,
