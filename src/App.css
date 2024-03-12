@@ -16,11 +16,22 @@ br {
   font-size: 24%;
 }
 
+calcite-label {
+  --calcite-ui-text-1: #ffffff;
+  --calcite-font-size--1: 1.3rem;
+  margin-top: 3vh;
+  margin-left: 10px;
+}
+
 calcite-tab,
 calcite-tabs {
-  --calcite-ui-border-3: #555555;
-  --calcite-ui-border-2: #555555;
+  /* --calcite-ui-border-3: #555555;
+  --calcite-ui-border-2: #555555; */
   --calcite-ui-border-1: #555555;
+  border-style: solid;
+  border-top: rgb(0, 0, 0, 0);
+  /* border-width: 1px; */
+  width: 22%;
 }
 
 calcite-action-bar {
@@ -47,7 +58,6 @@ calcite-panel {
   --calcite-ui-foreground-2: #2b2b2b;
   --calcite-ui-text-2: #ffffff;
   background-color: #2b2b2b;
-  --calcite-ui-border-3: #555555;
 }
 
 calcite-list {
@@ -109,7 +119,7 @@ calcite-switch {
 .headerTitle {
   color: white;
   margin-left: 1rem;
-  font-size: 2.6vh;
+  font-size: 1.4rem;
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -141,35 +151,36 @@ calcite-switch {
 
 /* total Progress */
 
-.totalProgressDiv {
-  display: flex;
-  padding-left: 20px;
-  margin-top: 15px;
-  margin-bottom: 20px;
-}
-
 .totalProgressLabel {
   color: white;
   font-size: 1.5vw;
   padding-bottom: 0.3vh;
   padding-top: 0.6vh;
+  border-style: solid;
+  border-width: 0.7px;
+  border-color: #999696;
 }
 
 .totalProgressNumber {
   color: #d4ff33;
-  font-size: 3.4vw;
+  font-size: 3rem;
   font-weight: bold;
   font-family: 'calibri';
-  padding-left: 70%;
+  text-align: center;
+  margin-top: 3vh;
 }
 
+.totalProgressDiv,
 .cutterHeadPositionLabel,
 .gaugeChartTitle {
   color: white;
   font-size: 1.5vw;
   padding-bottom: 0.3vh;
   padding-top: 0.6vh;
-  padding-left: 20px;
+  padding-left: 10px;
+  /* border-style: solid;
+  border-width: 0.7px;
+  border-color: #999696; */
 }
 
 .cutterHeadPositionNo span {
@@ -182,10 +193,11 @@ calcite-switch {
 
 .ringAbsentLabel,
 .ringPresentLabel {
-  font-size: 1.5vw;
+  font-size: 1.5rem;
   font-weight: normal;
   color: white;
-  padding-left: 15%;
+  text-align: center;
+  margin-top: 3vh;
 }
 
 .gaugeChartTitle {
@@ -194,7 +206,6 @@ calcite-switch {
   padding-bottom: 0.3vh;
   padding-top: 0.6vh;
   padding-left: 20px;
-  background-color: rgb(0, 0, 0, 0.1);
 }
 
 .delayedSegmentLabel {
@@ -203,7 +214,6 @@ calcite-switch {
   padding-bottom: 0.3vh;
   padding-top: 2vh;
   padding-left: 20px;
-  background-color: rgb(0, 0, 0, 0.1);
 }
 
 .totalDelayZero,
@@ -213,24 +223,6 @@ calcite-switch {
   font-weight: bold;
   color: rgb(232, 54, 24);
   padding-left: 10px;
-}
-
-#utilityNumberDiv {
-  width: 50%;
-  height: 10%;
-  padding-top: 2%;
-  padding-left: 15px;
-  font-size: 1vw;
-  color: #f7f5f7;
-}
-
-#utilityNumberDiv b {
-  font-size: 2.5vw;
-  font-family: 'Calibri';
-  font-weight: bold;
-  color: #6ede00;
-  /*#d4ff33;*/
-  margin: auto;
 }
 
 /* Information panel */

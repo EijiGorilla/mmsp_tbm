@@ -1,7 +1,7 @@
 {
   "homepage": "https://eijigorilla.github.io/mmsp_tbm",
   "name": "mmsp_tbm",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "private": true,
   "dependencies": {
     "@amcharts/amcharts5": "^5.5.6",

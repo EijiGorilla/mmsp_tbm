@@ -17,11 +17,15 @@ import {
   CalciteActionBar,
   CalciteAction,
   CalciteSwitch,
+  CalciteTab,
+  CalciteChip,
   CalciteTabs,
   CalcitePanel,
   CalciteList,
   CalciteListItem,
   CalciteButton,
+  CalciteNavigation,
+  CalciteNavigationLogo,
 } from '@esri/calcite-components-react';
 import Chart from './components/Chart';
 import ProgressChart from './components/ProgressChart';
@@ -174,16 +178,23 @@ function App() {
   return (
     <>
       <CalciteShell>
-        <CalciteTabs slot="panel-end" style={{ width: '25vw' }}>
+        <CalciteTabs slot="panel-end">
           <Chart
             contractP={contractPackage === null ? defaultValue.field1 : contractPackage.field1}
             tunnelL={tunnelLine === null ? '' : tunnelLine.name}
           />
         </CalciteTabs>
+
         <header
           slot="header"
           id="header-title"
-          style={{ display: 'flex', width: '100%', padding: '0 1rem' }}
+          style={{
+            display: 'flex',
+            width: '100%',
+            padding: '0 1rem',
+            borderStyle: 'solid',
+            borderWidth: 1,
+          }}
         >
           <img
             src="https://EijiGorilla.github.io/Symbols/Projec_Logo/DOTr_Logo_v2.png"

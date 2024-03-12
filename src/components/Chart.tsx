@@ -13,7 +13,14 @@ import {
   tbmCutterHeadSpotData,
   thousands_separators,
 } from '../Query';
-import { CalciteSwitch } from '@esri/calcite-components-react';
+import {
+  CalciteBlock,
+  CalciteLabel,
+  CalcitePanel,
+  CalciteSwitch,
+  CalciteNavigation,
+  CalciteNavigationLogo,
+} from '@esri/calcite-components-react';
 
 // Dispose function
 function maybeDisposeRoot(divId: any) {
@@ -98,7 +105,7 @@ const Chart = ({ contractP, tunnelL }: any) => {
     chart.children.unshift(
       am5.Label.new(root, {
         text: '[bold]' + chartData[1],
-        fontSize: '2.3em',
+        fontSize: '1.6em',
         textAlign: 'center',
         fill: chartTitleColor,
         x: am5.percent(50),
@@ -188,7 +195,7 @@ const Chart = ({ contractP, tunnelL }: any) => {
         textAlign: 'center',
         centerY: am5.percent(90),
         y: am5.percent(25),
-        fontSize: '2.9em',
+        fontSize: '1em',
         fill: percentProgressLabelColor,
       }),
     );
@@ -233,49 +240,54 @@ const Chart = ({ contractP, tunnelL }: any) => {
 
   return (
     <div>
+      <CalciteLabel layout="inline">
+        <span style={{ marginRight: 'auto', fontSize: '1.7rem' }}>PROGRESS</span>
+        <img
+          src="https://EijiGorilla.github.io/Symbols/TBM.png"
+          alt="TBM Logo"
+          height={'90%'}
+          width={'20%'}
+          style={{ marginLeft: 'auto', marginRight: 'auto' }}
+        />
+      </CalciteLabel>
+
       {/* Total Number of Segment rings */}
-      <div className="totalProgressDiv">
-        <div>
-          <div className="totalProgressLabel">Total Rings</div>
-          <br />
-          <br />
-          <b className="totalProgressNumber">{thousands_separators(chartData[0])}</b>
-        </div>
-      </div>
-
+      <CalciteLabel>
+        Total Rings
+        <div className="totalProgressNumber">{thousands_separators(chartData[0])}</div>
+      </CalciteLabel>
       {/* Progress Chart */}
-      <div className="gaugeChartTitle">Segment Ring</div>
-      <div
-        id={chartID}
-        style={{
-          width: '22vw',
-          height: '28vh',
-          backgroundColor: 'rgb(0,0,0,0.1)',
-          color: 'white',
-          marginRight: '10px',
-        }}
-      ></div>
-
-      {/* Cutter Head Position */}
-      <div className="cutterHeadPositionLabel">Cutter Head Position</div>
-      <br />
-      <div className="cutterHeadPositionNo">
-        {tunnelL === '' || cutterHeadPositionNo[0] === undefined ? (
-          <div className="ringAbsentLabel">Ring No.-------</div>
-        ) : (
-          <div className="ringPresentLabel">
-            Ring No.<span>{cutterHeadPositionNo[0]}</span>
-          </div>
-        )}
-      </div>
-
+      <CalciteLabel>
+        Segmented Rings
+        <div
+          id={chartID}
+          style={{
+            width: '22vw',
+            height: '28vh',
+            color: 'white',
+            marginRight: '10px',
+          }}
+        ></div>
+      </CalciteLabel>
+      {/* <div className="gaugeChartTitle">Segment Ring</div> */}
+      <CalciteLabel>
+        Cutter Head Position
+        <div className="cutterHeadPositionNo">
+          {tunnelL === '' || cutterHeadPositionNo[0] === undefined ? (
+            <div className="ringAbsentLabel">Ring No.-------</div>
+          ) : (
+            <div className="ringPresentLabel">
+              Ring No.<span>{cutterHeadPositionNo[0]}</span>
+            </div>
+          )}
+        </div>
+      </CalciteLabel>
       {/* Delayed Segment */}
-      <div className="delayedSegmentLabel">
+      <CalciteLabel>
         Delayed Segment
         <CalciteSwitch
           onCalciteSwitchChange={(event) => setDelayedSwitch(event.target.checked)}
         ></CalciteSwitch>
-        <br />
         <div className="delayedSegmentNo">
           {chartData[3] === 0 || chartData[4] === undefined ? (
             <div className="totalDelayZero">0% (0)</div>
@@ -285,7 +297,7 @@ const Chart = ({ contractP, tunnelL }: any) => {
             </div>
           )}
         </div>
-      </div>
+      </CalciteLabel>
     </div>
   );
 };
