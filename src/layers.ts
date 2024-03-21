@@ -51,7 +51,6 @@ export const constructionBoundaryLayer = new FeatureLayer({
     },
   },
   layerId: 4,
-  // outFields: ['*'],
   renderer: ConstructionBoundaryFill,
   definitionExpression: 'MappingBoundary = 1',
   title: 'Construction Boundary',
@@ -156,7 +155,6 @@ export const stationBoxLayer = new FeatureLayer({
   minScale: 150000,
   maxScale: 0,
   title: 'Station Box',
-  // outFields: ['*'],
   popupEnabled: false,
   elevationInfo: {
     mode: 'on-the-ground',
@@ -312,7 +310,6 @@ export const lotLayer = new FeatureLayer({
     },
   },
   layerId: 8,
-  // outFields: ['*'],
   title: 'Land Acquisition',
 
   labelsVisible: false,
@@ -378,7 +375,6 @@ export const lotLayerBoundary = new FeatureLayer({
     },
   },
   layerId: 8,
-  // outFields: ['*'],
   title: 'Lot Boundary',
   renderer: lotLayerBoundaryRenderer,
   labelingInfo: [lotLayerBoundaryLabel],
@@ -604,7 +600,6 @@ export const tbmTunnelLayer = new FeatureLayer({
   //definitionExpression: "Package = 'CP101'",
   renderer: tbmStatusRenderer,
   title: 'TBM Segment',
-  // outFields: ['*'],
   popupTemplate: {
     title: 'Ring No.: <b>{segmentno}</b> (<b>{line}</b>)',
     lastEditInfoEnabled: false,

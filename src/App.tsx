@@ -199,47 +199,46 @@ function App() {
           <img
             src="https://EijiGorilla.github.io/Symbols/Projec_Logo/DOTr_Logo_v2.png"
             alt="DOTr Logo"
-            height={'2.9%'}
-            width={'2.9%'}
+            height={'55px'}
+            width={'55px'}
             style={{ marginBottom: 'auto', marginTop: 'auto' }}
           />
           <b className="headerTitle">MMSP TBM TUNNEL</b>
           <div className="date">{!asOfDate ? '' : 'As of ' + asOfDate}</div>
 
-          <div className="dropdownFilter">
-            <div className="dropdownFilterLayout">
-              <b
-                style={{
-                  color: 'white',
-                  margin: 10,
-                  fontSize: '0.9vw',
-                }}
-              ></b>
-              <Select
-                placeholder="Select CP"
-                value={contractPackage}
-                options={dropdownData}
-                onChange={handleContractPackageChange}
-                getOptionLabel={(x: any) => x.field1}
-                styles={customstyles}
-              />
-              <br />
-              <b style={{ color: 'white', margin: 10, fontSize: '0.9vw' }}></b>
-              <Select
-                placeholder="Select Line"
-                value={tunnelLine}
-                options={tunnelLineList}
-                onChange={handleTunnelLineChange}
-                getOptionLabel={(x: any) => x.name}
-                styles={customstyles}
-              />
-            </div>
+          <div className="dropdownFilterLayout">
+            <b
+              style={{
+                color: 'white',
+                margin: 10,
+                fontSize: '0.9vw',
+              }}
+            ></b>
+            <Select
+              placeholder="Select CP"
+              value={contractPackage}
+              options={dropdownData}
+              onChange={handleContractPackageChange}
+              getOptionLabel={(x: any) => x.field1}
+              styles={customstyles}
+            />
+            <br />
+            <b style={{ color: 'white', margin: 10, fontSize: '0.9vw' }}></b>
+            <Select
+              placeholder="Select Line"
+              value={tunnelLine}
+              options={tunnelLineList}
+              onChange={handleTunnelLineChange}
+              getOptionLabel={(x: any) => x.name}
+              styles={customstyles}
+            />
           </div>
+
           <img
             src="https://EijiGorilla.github.io/Symbols/Projec_Logo/MMSP.png"
             alt="GCR Logo"
-            height={'4.6%'}
-            width={'4.6%'}
+            height={'50px'}
+            width={'75px'}
             style={{
               marginBottom: 'auto',
               marginTop: 'auto',
