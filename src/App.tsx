@@ -178,7 +178,7 @@ function App() {
   return (
     <>
       <CalciteShell>
-        <CalciteTabs slot="panel-end">
+        <CalciteTabs slot="panel-end" scale="m">
           <Chart
             contractP={contractPackage === null ? defaultValue.field1 : contractPackage.field1}
             tunnelL={tunnelLine === null ? '' : tunnelLine.name}
@@ -193,7 +193,8 @@ function App() {
             width: '100%',
             padding: '0 1rem',
             borderStyle: 'solid',
-            borderWidth: 1,
+            borderBottomWidth: '6px',
+            height: '70px',
           }}
         >
           <img
@@ -237,13 +238,13 @@ function App() {
           <img
             src="https://EijiGorilla.github.io/Symbols/Projec_Logo/MMSP.png"
             alt="GCR Logo"
-            height={'50px'}
-            width={'75px'}
+            height={'58px'}
+            width={'77px'}
             style={{
               marginBottom: 'auto',
               marginTop: 'auto',
               marginLeft: 'auto',
-              marginRight: '5rem',
+              marginRight: '3rem',
             }}
           />
         </header>
@@ -365,7 +366,7 @@ function App() {
             position: 'fixed',
             zIndex: 1,
             bottom: 10,
-            right: '23%',
+            right: '220px',
             color: 'white',
             backgroundColor: '#2b2b2b',
             paddingLeft: 5,

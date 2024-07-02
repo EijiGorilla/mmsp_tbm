@@ -158,7 +158,7 @@ export async function tbmCutterHeadSpotData({ contractP, tunnelL }: any) {
             resource: {
               href: 'https://EijiGorilla.github.io/Symbols/TBM_LOGO2.png',
             },
-            size: 30,
+            size: 40,
           }),
         ],
         verticalOffset: {

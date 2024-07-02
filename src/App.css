@@ -16,27 +16,19 @@ br {
   font-size: 24%;
 }
 
-calcite-label {
-  --calcite-ui-text-1: #ffffff;
-  --calcite-font-size--1: 1.3rem;
-  margin-top: 3vh;
-  margin-left: 10px;
-}
-
 calcite-tab,
 calcite-tabs {
   /* --calcite-ui-border-3: #555555;
   --calcite-ui-border-2: #555555; */
   --calcite-ui-border-1: #555555;
-  border-style: solid;
-  border-top: rgb(0, 0, 0, 0);
-  /* border-width: 1px; */
-  width: 22%;
+  /* --calcite-ui-background: #bfbfbf; */
 }
 
 calcite-action-bar {
   --calcite-ui-border-3: #555555;
   --calcite-ui-text-3: #bfbfbf;
+  border-style: solid;
+  border-right-width: 6px;
 }
 
 calcite-shell {
@@ -44,6 +36,8 @@ calcite-shell {
   --calcite-ui-text-1: #ffffff;
   --calcite-ui-background: #2b2b2b;
   --calcite-ui-border-3: #555555;
+  border-style: solid;
+  border-width: 5px;
 }
 
 calcite-shell-panel {
@@ -140,80 +134,6 @@ calcite-switch {
 }
 
 /* total Progress */
-
-.totalProgressLabel {
-  color: white;
-  font-size: 1.5vw;
-  padding-bottom: 0.3vh;
-  padding-top: 0.6vh;
-  border-style: solid;
-  border-width: 0.7px;
-  border-color: #999696;
-}
-
-.totalProgressNumber {
-  color: #d4ff33;
-  font-size: 3rem;
-  font-weight: bold;
-  font-family: 'calibri';
-  text-align: center;
-  margin-top: 3vh;
-}
-
-.totalProgressDiv,
-.cutterHeadPositionLabel,
-.gaugeChartTitle {
-  color: white;
-  font-size: 1.5vw;
-  padding-bottom: 0.3vh;
-  padding-top: 0.6vh;
-  padding-left: 10px;
-  /* border-style: solid;
-  border-width: 0.7px;
-  border-color: #999696; */
-}
-
-.cutterHeadPositionNo span {
-  text-align: center;
-  font-size: 2.5vw;
-  font-weight: bold;
-  color: rgb(232, 54, 24);
-  padding-left: 10px;
-}
-
-.ringAbsentLabel,
-.ringPresentLabel {
-  font-size: 1.5rem;
-  font-weight: normal;
-  color: white;
-  text-align: center;
-  margin-top: 3vh;
-}
-
-.gaugeChartTitle {
-  color: white;
-  font-size: 1.5vw;
-  padding-bottom: 0.3vh;
-  padding-top: 0.6vh;
-  padding-left: 20px;
-}
-
-.delayedSegmentLabel {
-  color: white;
-  font-size: 1.5vw;
-  padding-bottom: 0.3vh;
-  padding-top: 2vh;
-  padding-left: 20px;
-}
-
-.totalDelayZero,
-.totalDelayPresent {
-  text-align: center;
-  font-size: 2.5vw;
-  font-weight: bold;
-  color: rgb(232, 54, 24);
-  padding-left: 10px;
-}
 
 /* Information panel */
 .informationDiv {

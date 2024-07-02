@@ -36,7 +36,6 @@ const Chart = ({ contractP, tunnelL }: any) => {
   const chartRef = useRef<unknown | any | undefined>({});
   const [chartData, setChartData] = useState([]);
   const [cutterHeadPositionNo, setCutterHeadPositionNo] = useState([]);
-  const [delayedSwitch, setDelayedSwitch] = useState<boolean>(false);
 
   const chartID = 'gauge-bar';
 
@@ -51,14 +50,6 @@ const Chart = ({ contractP, tunnelL }: any) => {
 
     tbmCutterHeadSpotData({ contractP, tunnelL });
   }, [contractP, tunnelL]);
-
-  useEffect(() => {
-    if (delayedSwitch === true) {
-      tbmTunnelLayer.renderer = tbmDelayedRenderer;
-    } else {
-      tbmTunnelLayer.renderer = tbmStatusRenderer;
-    }
-  });
 
   const chartTitleColor = am5.color('#d4ff33'); // yellow green
   const percentProgressLabelColor = am5.color('#00C3FF'); // light blue
@@ -92,7 +83,7 @@ const Chart = ({ contractP, tunnelL }: any) => {
     chart.children.unshift(
       am5.Label.new(root, {
         text: 'Completed',
-        fontSize: 25,
+        fontSize: '2rem',
         textAlign: 'center',
         fill: percentProgressLabelColor,
         x: am5.percent(50),
@@ -104,8 +95,8 @@ const Chart = ({ contractP, tunnelL }: any) => {
 
     chart.children.unshift(
       am5.Label.new(root, {
-        text: '[bold]' + chartData[1],
-        fontSize: '1.6em',
+        text: '[bold]' + thousands_separators(chartData[1]),
+        fontSize: '2.8rem',
         textAlign: 'center',
         fill: chartTitleColor,
         x: am5.percent(50),
@@ -117,7 +108,7 @@ const Chart = ({ contractP, tunnelL }: any) => {
 
     var axisRenderer = am5radar.AxisRendererCircular.new(root, {
       innerRadius: am5.percent(120), //gagues width becomes thicker outward
-      strokeOpacity: 0.1,
+      strokeOpacity: 1,
       minGridDistance: 30,
     });
 
@@ -133,7 +124,7 @@ const Chart = ({ contractP, tunnelL }: any) => {
     axisRenderer.grid.template.setAll({
       stroke: root.interfaceColors.get('background'),
       visible: false,
-      strokeOpacity: 0.8,
+      strokeOpacity: 0,
     });
 
     var xAxis = chart.xAxes.push(
@@ -195,7 +186,7 @@ const Chart = ({ contractP, tunnelL }: any) => {
         textAlign: 'center',
         centerY: am5.percent(90),
         y: am5.percent(25),
-        fontSize: '1em',
+        fontSize: '1.8rem',
         fill: percentProgressLabelColor,
       }),
     );
@@ -239,65 +230,92 @@ const Chart = ({ contractP, tunnelL }: any) => {
   });
 
   return (
-    <div>
-      <CalciteLabel layout="inline">
-        <span style={{ marginRight: 'auto', fontSize: '1.7rem' }}>PROGRESS</span>
+    <div
+      style={{
+        borderStyle: 'solid',
+        borderLeftWidth: '6px',
+        marginTop: '-6px',
+        marginRight: '-6px',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          borderStyle: 'solid',
+          paddingBottom: '10px',
+        }}
+      >
+        <dl style={{ textIndent: '20px' }}>
+          <dt style={{ color: 'white', fontSize: '1.7rem' }}>Total Rings</dt>
+          <dd
+            style={{
+              color: '#d4ff33',
+              fontSize: '2.6rem',
+              fontWeight: 'bold',
+              lineHeight: '1.2',
+            }}
+          >
+            {thousands_separators(chartData[0])}
+          </dd>
+        </dl>
         <img
           src="https://EijiGorilla.github.io/Symbols/TBM.png"
           alt="TBM Logo"
-          height={'90%'}
-          width={'20%'}
-          style={{ marginLeft: 'auto', marginRight: 'auto' }}
+          height={'25%'}
+          width={'25%'}
+          style={{ margin: 'auto' }}
         />
-      </CalciteLabel>
+      </div>
 
-      {/* Total Number of Segment rings */}
-      <CalciteLabel>
-        Total Rings
-        <div className="totalProgressNumber">{thousands_separators(chartData[0])}</div>
-      </CalciteLabel>
       {/* Progress Chart */}
-      <CalciteLabel>
-        Segmented Rings
+      <div style={{ borderStyle: 'solid', borderTopWidth: '6px', paddingTop: '10px' }}>
+        <div style={{ color: 'white', fontSize: '1.7rem', textIndent: '20px' }}>
+          Segmented Rings
+        </div>
         <div
           id={chartID}
           style={{
-            width: '22vw',
-            height: '28vh',
+            // width: '23vw',
+            height: '33vh',
             color: 'white',
-            marginRight: '10px',
+            paddingBottom: '20px',
           }}
         ></div>
-      </CalciteLabel>
+      </div>
+
       {/* <div className="gaugeChartTitle">Segment Ring</div> */}
-      <CalciteLabel>
-        Cutter Head Position
-        <div className="cutterHeadPositionNo">
-          {tunnelL === '' || cutterHeadPositionNo[0] === undefined ? (
-            <div className="ringAbsentLabel">Ring No.-------</div>
-          ) : (
-            <div className="ringPresentLabel">
-              Ring No.<span>{cutterHeadPositionNo[0]}</span>
-            </div>
-          )}
-        </div>
-      </CalciteLabel>
-      {/* Delayed Segment */}
-      <CalciteLabel>
-        Delayed Segment
-        <CalciteSwitch
-          onCalciteSwitchChange={(event) => setDelayedSwitch(event.target.checked)}
-        ></CalciteSwitch>
-        <div className="delayedSegmentNo">
-          {chartData[3] === 0 || chartData[4] === undefined ? (
-            <div className="totalDelayZero">0% (0)</div>
-          ) : (
-            <div className="totalDelayPresent">
-              {chartData[4]} % ({thousands_separators(chartData[3])})
-            </div>
-          )}
-        </div>
-      </CalciteLabel>
+      <dl
+        style={{
+          textIndent: '20px',
+          borderStyle: 'solid',
+          borderTopWidth: '6px',
+          borderBottomWidth: '6px',
+          margin: '0',
+          paddingTop: '10px',
+          paddingBottom: '20px',
+        }}
+      >
+        <dt style={{ color: 'white', fontSize: '1.7rem' }}>Cutter Head Position</dt>{' '}
+        {tunnelL === '' || cutterHeadPositionNo[0] === undefined ? (
+          <dd style={{ fontSize: '1.5rem', color: 'white', paddingTop: '15px' }}>
+            Ring No.-------
+          </dd>
+        ) : (
+          <dd style={{ fontSize: '1.5rem', color: 'white', paddingTop: '15px' }}>
+            Ring No.
+            <span
+              style={{
+                color: '#E83618',
+                fontSize: '2.8rem',
+                fontWeight: 'bold',
+                paddingLeft: '10px',
+              }}
+            >
+              {cutterHeadPositionNo[0]}
+            </span>
+          </dd>
+        )}
+      </dl>
     </div>
   );
 };
