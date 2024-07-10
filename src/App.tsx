@@ -30,6 +30,7 @@ import {
 import Chart from './components/Chart';
 import ProgressChart from './components/ProgressChart';
 import { dateUpdate, dropdownData } from './Query';
+import { tbmTunnelLayer } from './layers';
 
 function App() {
   const [asOfDate, setAsOfDate] = useState<undefined | any | unknown>(null);
@@ -53,6 +54,14 @@ function App() {
 
   // Measurement tools
   const [activeAnalysis, setActiveAnalysis] = useState<any | undefined>('');
+
+  //
+  const [tbmTunnelLayerLoaded, setTbmTunnelLayerLoaded] = useState<any>();
+  useEffect(() => {
+    tbmTunnelLayer.load().then(() => {
+      setTbmTunnelLayerLoaded(tbmTunnelLayer.loadStatus);
+    });
+  });
 
   // Default values for dropdown
   const defaultValue = {
@@ -179,10 +188,12 @@ function App() {
     <>
       <CalciteShell>
         <CalciteTabs slot="panel-end" scale="m">
-          <Chart
-            contractP={contractPackage === null ? defaultValue.field1 : contractPackage.field1}
-            tunnelL={tunnelLine === null ? '' : tunnelLine.name}
-          />
+          {tbmTunnelLayerLoaded === 'loaded' && (
+            <Chart
+              contractP={contractPackage === null ? defaultValue.field1 : contractPackage.field1}
+              tunnelL={tunnelLine === null ? '' : tunnelLine.name}
+            />
+          )}
         </CalciteTabs>
 
         <header
