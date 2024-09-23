@@ -121,7 +121,9 @@ calcite-switch {
 .dropdownFilterLayout {
   display: flex;
   flex-direction: row;
-  margin: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 2%;
 }
 
 /* total Progress */

@@ -253,18 +253,18 @@ function App() {
             />
           </div>
 
-          <img
+          {/* <img
             src="https://EijiGorilla.github.io/Symbols/Projec_Logo/MMSP.png"
             alt="GCR Logo"
-            height={'58px'}
-            width={'77px'}
+            height={'40px'}
+            width={'60px'}
             style={{
               marginBottom: 'auto',
               marginTop: 'auto',
               marginLeft: 'auto',
               marginRight: '3rem',
             }}
-          />
+          /> */}
         </header>
         {/* Calcite Action Panel */}
         <CalciteShellPanel
