@@ -15,6 +15,7 @@ import {
   // geoLayer,
   tbmTunnelLayer,
   cutterHeadSpotLayer,
+  stationStructureLayer,
 } from './layers';
 
 export const map = new Map({
@@ -46,6 +47,7 @@ const tbmGroupLayer = new GroupLayer({
 // map.add(geoLayer);
 map.add(alignmentGroupLayer);
 map.add(lotGroupLayer);
+map.add(stationStructureLayer);
 map.add(tbmGroupLayer);
 map.add(stationLayer);
 
@@ -82,7 +84,8 @@ export const basemaps = new BasemapGallery({
 
 export const layerList = new LayerList({
   view: view,
-  selectionEnabled: true,
+  selectionMode: 'multiple',
+  visibilityAppearance: 'checkbox',
   container: undefined,
   listItemCreatedFunction: (event) => {
     const item = event.item;

@@ -3,13 +3,18 @@ import LabelClass from '@arcgis/core/layers/support/LabelClass';
 import SimpleFillSymbol from '@arcgis/core/symbols/SimpleFillSymbol';
 import UniqueValueRenderer from '@arcgis/core/renderers/UniqueValueRenderer';
 import SimpleRenderer from '@arcgis/core/renderers/SimpleRenderer';
+import SceneLayer from '@arcgis/core/layers/SceneLayer';
 import {
+  MeshSymbol3D,
+  FillSymbol3DLayer,
   LineSymbol3D,
   PathSymbol3DLayer,
   TextSymbol,
   LabelSymbol3D,
   TextSymbol3DLayer,
+  PolygonSymbol3D,
 } from '@arcgis/core/symbols';
+import SolidEdges3D from '@arcgis/core/symbols/edges/SolidEdges3D';
 import GraphicsLayer from '@arcgis/core/layers/GraphicsLayer';
 
 /* Standalone table for Dates */
@@ -608,6 +613,40 @@ export const tbmTunnelLayer = new FeatureLayer({
 
 export const cutterHeadSpotLayer = new GraphicsLayer({
   title: 'Cutter Head Position',
+});
+
+/* Station Structure */
+export const stationStructureLayer = new SceneLayer({
+  //structureLayer
+  portalItem: {
+    id: 'fbb99839306e4e9fbf94818b53b4f142',
+    portal: {
+      url: 'https://gis.railway-sector.com/portal',
+    },
+  },
+  popupEnabled: false,
+  elevationInfo: {
+    mode: 'absolute-height',
+    offset: 0,
+  },
+  title: 'Station Structure',
+  // when filter using date, example below. use this format
+  //definitionExpression: "EndDate = date'2020-6-3'"
+});
+stationStructureLayer.renderer = new SimpleRenderer({
+  symbol: new MeshSymbol3D({
+    symbolLayers: [
+      new FillSymbol3DLayer({
+        material: {
+          color: [225, 225, 225, 0],
+          colorMixMode: 'replace',
+        },
+        edges: new SolidEdges3D({
+          color: [225, 225, 225, 0.3],
+        }),
+      }),
+    ],
+  }),
 });
 
 /* Muck Pit */

@@ -5,11 +5,16 @@ import { map, view, basemaps, layerList, measurement, compass } from './Scene';
 import './index.css';
 import './App.css';
 import '@esri/calcite-components/dist/components/calcite-shell';
+import '@esri/calcite-components/dist/components/calcite-shell-panel';
 import '@esri/calcite-components/dist/components/calcite-list';
 import '@esri/calcite-components/dist/components/calcite-list-item';
 import '@esri/calcite-components/dist/components/calcite-shell-panel';
 import '@esri/calcite-components/dist/components/calcite-action';
 import '@esri/calcite-components/dist/components/calcite-action-bar';
+import '@esri/calcite-components/dist/components/calcite-switch';
+import '@esri/calcite-components/dist/components/calcite-tabs';
+import '@esri/calcite-components/dist/components/calcite-panel';
+import '@esri/calcite-components/dist/components/calcite-button';
 import '@esri/calcite-components/dist/calcite/calcite.css';
 import {
   CalciteShell,
@@ -216,7 +221,9 @@ function App() {
             style={{ marginBottom: 'auto', marginTop: 'auto' }}
           />
           <b className="headerTitle">MMSP TBM TUNNEL</b>
-          <div className="date">{!asOfDate ? '' : 'As of ' + asOfDate}</div>
+          <div className="date" style={{ width: '15%' }}>
+            {!asOfDate ? '' : 'As of ' + asOfDate}
+          </div>
 
           <div className="dropdownFilterLayout">
             <b
@@ -322,14 +329,7 @@ function App() {
             style={{ width: '18vw' }}
             hidden
           >
-            <CalciteList>
-              <CalciteListItem
-                label=""
-                description=""
-                value="land-acquisition"
-                ref={layerListDiv}
-              ></CalciteListItem>
-            </CalciteList>
+            <div id="layers-container" ref={layerListDiv}></div>
           </CalcitePanel>
 
           <CalcitePanel
@@ -339,9 +339,7 @@ function App() {
             style={{ width: '18vw' }}
             hidden
           >
-            <CalciteList>
-              <CalciteListItem value="basemaps" ref={calcitePanelBasemaps}></CalciteListItem>
-            </CalciteList>
+            <div id="basemap-container" ref={calcitePanelBasemaps}></div>
           </CalcitePanel>
 
           <CalcitePanel
